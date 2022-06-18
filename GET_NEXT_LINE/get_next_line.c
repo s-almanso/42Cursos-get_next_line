@@ -6,7 +6,7 @@
 /*   By: salmanso <salmanso@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 20:19:48 by salmanso          #+#    #+#             */
-/*   Updated: 2022/06/18 21:06:38 by salmanso         ###   ########.fr       */
+/*   Updated: 2022/06/18 22:11:32 by salmanso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <stdio.h> //printf library
+
+// Intial Code
 
 char *get_next_line(int fd)
 {
@@ -29,5 +31,15 @@ char *get_next_line(int fd)
 
 	return (x);
 }
-void ft_read_fd();
+char *ft_read_fd(int fd)
+{
+	char *x;
+
+	while(fd)
+	{
+		read(fd, *buff, BUFFER_SIZE);
+	}
+	if(read == -1)
+		return (NULL);
+}
 void ft_save_extra_read();
