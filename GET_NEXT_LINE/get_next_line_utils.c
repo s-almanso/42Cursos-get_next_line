@@ -6,7 +6,7 @@
 /*   By: salmanso <salmanso@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 19:35:42 by salmanso          #+#    #+#             */
-/*   Updated: 2022/06/20 19:35:50 by salmanso         ###   ########.fr       */
+/*   Updated: 2022/06/20 21:47:23 by salmanso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,26 @@ char	*ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
-size_t	ft_strlen(const char *s)
+int	ft_strlen(const char *s)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
 	if (s[i] == '\0')
 		return (0);
 	while (s[i] != '\0')
+		i++;
+	return (i);
+}
+
+int	ft_strlen_till_var(const char *s, int c)
+{
+	int	i;
+
+	i = 0;
+	if (s[i] == '\0')
+		return (0);
+	while (s[i] != '\0' && s[i] != c)
 		i++;
 	return (i);
 }
@@ -61,4 +73,3 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	str[j] = '\0';
 	return (str);
 }
-

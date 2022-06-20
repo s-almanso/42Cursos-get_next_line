@@ -6,7 +6,7 @@
 /*   By: salmanso <salmanso@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 20:19:48 by salmanso          #+#    #+#             */
-/*   Updated: 2022/06/20 19:37:45 by salmanso         ###   ########.fr       */
+/*   Updated: 2022/06/20 21:48:15 by salmanso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 // Intial Code
 
-char *ft_read_fd(int fd, char *str)
+char *ft_read_save(int fd, char *str)
 {
 	char *tmp;
 	int count;
@@ -32,8 +32,8 @@ char *ft_read_fd(int fd, char *str)
 	// Now we need to loop through the line till we can find a '\0'
 	while(count && !ft_strchr(str, '\0'))
 	{
-		count = read(fd, tmp, str);
-		if (count = -1)
+		count = read(fd, tmp, BUFFER_SIZE);
+		if (count == -1)
 		{
 			free(tmp);
 			return(NULL);
@@ -46,13 +46,56 @@ char *ft_read_fd(int fd, char *str)
 }
 char *ft_save_line(char *str)
 {
+	char	*tmp;
+	int		i;
+	int		j;
 
-
+	// measure number of charachters inside the static var
+	i = ft_strlen(str);
+	j = 0;
+	// allocate memory for it + '\0' + '\n'
+	tmp = malloc (sizeof(char) * i + 2);
+	if (!tmp)
+	{
+		free(tmp);
+		return (NULL);
+	}
+	while(tmp[j] != '\n' && str[j] != '\0')
+	{
+		tmp[j] = str[j];
+		j++;
+	}
+	if (tmp[j] == '\n')
+	{
+		tmp[j] = str[j];
+		j++;
+	}
+	tmp[j] = '\0';
+	return(tmp);
 }
 
 char *ft_save_remaining(char *str)
 {
+	char	*tmp;
+	int		i;
+	int		j;
 
+	i = ft_strlen_till_var(str, '\n');
+	j = 0;
+	tmp = malloc (sizeof(char) * i + 2);
+	if (!tmp)
+	{
+		free(tmp);
+		return(NULL);
+	}
+	while(str[j] != '\0')
+	{
+		tmp[j] = str[j];
+		j++;
+	}
+	tmp[j] = '\n';
+	tmp[j + 1] = '\0';
+	return(tmp);
 }
 
 char *get_next_line(int fd)
@@ -89,13 +132,13 @@ char *get_next_line(int fd)
 		return (str);
 }
 
-// int main ()
-// {
-// 	int fd = open("/Users/salmanso/Desktop/eval/file.txt", O_RDONLY);
-// 	char *line = get_next_line(fd);
-// 	printf("%s", line);
-// 	free(line);
-// 	line = get_next_line(fd);
-// 	printf("%s", line);
-// 	free(line);
-// }
+int main ()
+{
+	int fd = open("file.txt", O_RDONLY);
+	char *line = get_next_line(fd);
+	printf("%s", line);
+	free(line);
+	line = get_next_line(fd);
+	printf("%s", line);
+	free(line);
+}
