@@ -6,7 +6,7 @@
 /*   By: salmanso <salmanso@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 20:19:48 by salmanso          #+#    #+#             */
-/*   Updated: 2022/06/20 21:48:15 by salmanso         ###   ########.fr       */
+/*   Updated: 2022/06/22 20:48:32 by salmanso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char *ft_read_save(int fd, char *str)
 		return (NULL);
 
 	// Now we need to loop through the line till we can find a '\0'
-	while(count && !ft_strchr(str, '\0'))
+	while(count && !ft_strchr(str, '\n'))
 	{
 		count = read(fd, tmp, BUFFER_SIZE);
 		if (count == -1)
@@ -54,7 +54,7 @@ char *ft_save_line(char *str)
 	i = ft_strlen(str);
 	j = 0;
 	// allocate memory for it + '\0' + '\n'
-	tmp = malloc (sizeof(char) * i + 2);
+	tmp = malloc (sizeof(char) * i + 1);
 	if (!tmp)
 	{
 		free(tmp);
@@ -65,7 +65,7 @@ char *ft_save_line(char *str)
 		tmp[j] = str[j];
 		j++;
 	}
-	if (tmp[j] == '\n')
+	if (str[j] == '\n')
 	{
 		tmp[j] = str[j];
 		j++;
@@ -80,21 +80,25 @@ char *ft_save_remaining(char *str)
 	int		i;
 	int		j;
 
-	i = ft_strlen_till_var(str, '\n');
+	while(str[i] != '\n' && str[i] != '\0')
+		i++;
 	j = 0;
-	tmp = malloc (sizeof(char) * i + 2);
+	tmp = malloc (sizeof(char) * (ft_strlen(str) - i) + 2);
 	if (!tmp)
 	{
 		free(tmp);
 		return(NULL);
 	}
-	while(str[j] != '\0')
+	if (str[i] == '\n')
+		i++;
+	while(str[i] != '\0')
 	{
-		tmp[j] = str[j];
+		tmp[j] = str[i];
 		j++;
+		i++;
 	}
-	tmp[j] = '\n';
-	tmp[j + 1] = '\0';
+	tmp[j] = '\0';
+	free(str);
 	return(tmp);
 }
 
@@ -138,7 +142,7 @@ int main ()
 	char *line = get_next_line(fd);
 	printf("%s", line);
 	free(line);
-	line = get_next_line(fd);
-	printf("%s", line);
-	free(line);
+	// line = get_next_line(fd);
+	// printf("%s", line);
+	// free(line);
 }
