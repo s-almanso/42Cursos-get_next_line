@@ -24,6 +24,7 @@ char *ft_read_save(int fd, char *str)
 	char *tmp;
 	int count;
 
+	count = 1;
 	// Allocate memory for the string to save what we'll read
 	tmp = malloc(sizeof(char) * BUFFER_SIZE + 1);
 	if (!tmp)
@@ -50,6 +51,9 @@ char *ft_save_line(char *str)
 	int		i;
 	int		j;
 
+	i = 0;
+	if (!str[i])
+		return(NULL);
 	// measure number of charachters inside the static var
 	i = ft_strlen(str);
 	j = 0;
@@ -109,14 +113,15 @@ char *get_next_line(int fd)
 	char *str;
 
 	// check if fd & Buffer are invalid
-	if (fd < 0 || BUFFER_SIZE < 1)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 
 	// call the function that will read and save from fd
 	static_str = ft_read_save(fd, static_str);
 	if(!static_str || static_str[0] == '\0')
 	{
-		free(static_str);
+		if (str)
+			free(static_str);
 		static_str = NULL;
 		return(NULL);
 	}
@@ -130,10 +135,8 @@ char *get_next_line(int fd)
 	{
 		free(static_str);
 		static_str = NULL;
-		return (NULL);
 	}
-	else
-		return (str);
+	return (str);
 }
 
 int main ()
