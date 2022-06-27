@@ -6,7 +6,7 @@
 /*   By: salmanso <salmanso@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 20:19:48 by salmanso          #+#    #+#             */
-/*   Updated: 2022/06/27 21:31:45 by salmanso         ###   ########.fr       */
+/*   Updated: 2022/06/27 22:11:37 by salmanso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,6 @@ char	*get_next_line(int fd)
 	}
 	return (str);
 }
-
 
 // #include <stdio.h> //printf library
 
