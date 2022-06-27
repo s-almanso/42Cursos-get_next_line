@@ -6,7 +6,7 @@
 /*   By: salmanso <salmanso@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 22:53:22 by salmanso          #+#    #+#             */
-/*   Updated: 2022/06/26 20:39:22 by salmanso         ###   ########.fr       */
+/*   Updated: 2022/06/27 20:58:34 by salmanso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ char *get_next_line(int fd)
 	static char *buff[OPEN_MAX];
 	char *str;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || fd >§ OPEN_MAX || BUFFER_SIZE <= 0)
 		return (NULL);
 	buff[fd] = ft_read_save(fd, buff[fd]);
 	if (!buff[fd])
