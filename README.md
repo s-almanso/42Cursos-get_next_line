@@ -5,11 +5,11 @@
 
 - 📫 How to reach me **salmanso@student.42abudhabi.ae**
 
-# Libft - My C Standard Library
-My implementation of some of the Standard C Library functions including some additional useful functions.
+# Get Next Line - Reading a line from a fd is way too tediuos
+My implementation of get next line function; This project is about programming a function that returns a line read from a file descriptor.
 
-### What is libft?
-Libft is an individual project at <b>42</b> that requires us to re-create some [C standard library](https://www.tutorialspoint.com/c_standard_library/index.htm) functions including some additional ones that can be used later to build a library of useful functions for the rest of the program.
+### What is get next line?
+Get Next Line is an individual project at <b>42</b> that requires us program a function that returns a line read from a file descriptor. It introduces a highly interesting new concept in C programming: <a href="https://www.geeksforgeeks.org/static-variables-in-c/">static variables.</a>
 
 
 #### Objectives
@@ -17,271 +17,123 @@ Libft is an individual project at <b>42</b> that requires us to re-create some [
 
 #### Skills
 - Algorithms & AI
-- Imperative programming
+- Unix
 - Rigor
 
 ## Getting started
 **Follow the steps below**
 ```bash
 # Clone the project and access the folder
-git clone https://github.com/s-almanso/libft && cd libft/
+git clone https://github.com/s-almanso/42Cursos-get_next_line && cd 42Cursos-get_next_line/
 
-# Run Make so you can build the main library
-make
+# Excute the mandatory part, you can specify any +ve for the BUFFER_SIZE
+gcc -Wall -Wextra -Werror -D BUFFER_SIZE=<any +ve> get_next_line.c get_next_line.h get_next_line_utils.c
 
-# Run Make so you can build the library with bonus
-make all
+# Main function included thus, it will read the full "file.txt" and return it line by line
+# to excute your program
+./a.out
 
-# Run Make bonus only if you want chained lists manipulation functions only
-make bonus
-
-# Compile your main with the library, example:
-gcc main.c libft.a
+# Compile the bonus part; you can specify any +ve for the BUFFER_SIZE
+gcc -Wall -Wextra -Werror -D BUFFER_SIZE=<any +ve> get_next_line_bonus.c get_next_line_bonus.h get_next_line_utils_bonus.c
 
 # Execute your program
 ./a.out
 
-# Clean output objects with
-make fclean
-
 # Well done!
 ```
 
-
-## Libft / C Standard Library table reference
+## Get Next line / Main Functions Used
 Each functions has the prefix "ft_" which means forty two.
 
 <table>
     <thead>
         <tr>
-            <th colspan=3><h4>C Library <a href="https://www.tutorialspoint.com/c_standard_library/ctype_h.htm">&lt;ctype.h&gt;</h4></a></th>
+            <th colspan=3><h4>Functions
         </tr>
         <tr>
-            <th>Libft</th>
+            <th>GNL</th>
             <th>Description</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td><a href=ft_isalnum.c>ft_isalnum</a></td>
+            <td><a>get_next_line</a></td>
             <td>Checks whether the passed character is alphanumeric.</td>
         </tr>
         <tr>
-            <td><a href=ft_isalpha.c>ft_isalpha</a></td>
-            <td>Checks whether the passed character is alphabetic.</td>
+            <td><a>ft_read_save</a></td>
+            <td>A functions that reads until we find a new line.</td>
         </tr>
         <tr>
-            <td><a href=ft_isascii.c>ft_isascii</a></td>
-            <td>Checks whether the passed character is ASCII.</td>
+            <td><a>ft_save_line</a></td>
+            <td>A functions that saves whatever we read into the static variable.</td>
         </tr>
         <tr>
-            <td><a href=ft_isdigit.c>ft_isdigit</a></td>
-            <td>Checks whether the passed character is decimal digit.</td>
+            <td><a>ft_save_remaining</a></td>
+            <td>Saves the remaining extra string that is after the new line, it acts as a buffer, so that when we call the next time we skip what we read before.</td>
         </tr>
         <tr>
-            <td><a href=ft_isprint.c>ft_isprint</a></td>
-            <td>Checks whether the passed character is printable.</td>
+            <td><a>ft_strchr</a></td>
+            <td>Finds the location of the passed value in the string.</td>
         </tr>
         <tr>
-            <td><a href=ft_tolower.c>ft_tolower</a></td>
-            <td>Converts uppercase letters to lowercase.</td>
+            <td><a>ft_strjoin</a></td>
+            <td>Joins two strings together.</td>
         </tr>
         <tr>
-            <td><a href=ft_toupper.c>ft_toupper</a></td>
-            <td>Converts lowercase letters to uppercase.</td>
-        </tr>
-    </tbody>
-    <thead>
-        <tr>
-            <th colspan=3><h4>C Library <a href="https://www.tutorialspoint.com/c_standard_library/string_h.htm">&lt;string.h&gt;</h4></a></th>
-        </tr>
-        <tr>
-            <th>Libft</th>
-            <th>Description</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td><a href=ft_bzero.c>ft_bzero</a></td>
-            <td>Erases the data in the n bytes of the memory block. (Write zeroes)</td>
-        </tr>
-        <tr>
-            <td><a href=ft_memchr.c>ft_memchr</a></td>
-            <td>Searches for the first occurrence of the character c (an unsigned char) in the first n bytes of the string.</td>
-        </tr>
-        <tr>
-            <td><a href=ft_memcmp.c>ft_memcmp</a></td>
-            <td>Compares the first n bytes of str1 and str2.</td>
-        </tr>
-        <tr>
-            <td><a href=ft_memcpy.c>ft_memcpy</a></td>
-            <td>Copies n characters from src to dest.</td>
-        </tr>
-        <tr>
-            <td><a href=ft_memmove.c>ft_memmove</a></td>
-            <td>Copies n characters from src to dest. (Non destructive manner)</td>
-        </tr>
-        <tr>
-            <td><a href=ft_memset.c>ft_memset</a></td>
-            <td>Copies the character c (an unsigned char) to the first n characters of the string.</td>
-        </tr>
-        <tr>
-            <td><a href=ft_strchr.c>ft_strchr</a></td>
-            <td>Searches for the first occurrence of the character c (an unsigned char) in the string.</td>
-        </tr>
-        <tr>
-            <td><a href=ft_strlcat.c>ft_strlcat</a></td>
-            <td>Appends string src to the end of dst. It will append at most dstsize - strlen(dst) - 1 characters.</td>
-        </tr>
-        <tr>
-            <td><a href=ft_strlcpy.c>ft_strlcpy</a></td>
-            <td>Copies up to dstsize - 1 characters from the string src to dst.</td>
-        </tr>
-        <tr>
-            <td><a href=ft_strlen.c>ft_strlen</a></td>
-            <td>Computes the length of the string but not including the terminating null character.</td>
-        </tr>
-        <tr>
-            <td><a href=ft_strncmp.c>ft_strncmp</a></td>
-            <td>Compares at most the first n bytes of str1 and str2.</td>
-        </tr>
-        <tr>
-            <td><a href=ft_strnstr.c>ft_strnstr</a></td>
-            <td>Locates the first occurrence of the null-terminated string little in the string big, where not more than len characters are searched.</td>
-        </tr>
-        <tr>
-            <td><a href=ft_strrchr.c>ft_strrchr</a></td>
-            <td>Searches for the last occurrence of the character c (an unsigned char) in the string.</td>
-        </tr>
-    </tbody>
-    <thead>
-        <tr>
-            <th colspan=3><h4>C Library <a href="https://www.tutorialspoint.com/c_standard_library/stdlib_h.htm">&lt;stdlib.h&gt;</h4></a></th>
-        </tr>
-        <tr>
-            <th>Libft</th>
-            <th>Description</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td><a href=ft_atoi.c>ft_atoi</a></td>
-            <td>Converts the string to an integer (type int).</td>
-        </tr>
-        <tr>
-            <td><a href=ft_calloc.c>ft_calloc</a></td>
-            <td>Allocates the requested memory initialized to zero bytes.</td>
-        </tr>
-    </tbody>
-    <thead>
-        <tr>
-            <th colspan=3><h4>Non-stantard C Library</h4></a></th>
-        </tr>
-        <tr>
-            <th>Libft</th>
-            <th>Description</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td><a href=ft_itoa.c>ft_itoa</a></td>
-            <td>Converts the int to a string (type char *).</td>
-        </tr>
-        <tr>
-            <td><a href=ft_putchar_fd.c>ft_putchar_fd</a></td>
-            <td>Outputs the character 'c' to the given file descriptor.</td>
-        </tr>
-        <tr>
-            <td><a href=ft_putendl_fd.c>ft_putendl_fd</a></td>
-            <td>Outputs the string 's' to the given file descriptor, followed by a newline.</td>
-        </tr>
-        <tr>
-            <td><a href=ft_putnbr_fd.c>ft_putnbr_fd</a></td>
-            <td>Outputs the integer 'n' to the given file descriptor.</td>
-        </tr>
-        <tr>
-            <td><a href=ft_putstr_fd.c>ft_putstr_fd</a></td>
-            <td>Outputs the string 's' to the given file descriptor.</td>
-        </tr>
-        <tr>
-            <td><a href=ft_strdup.c>ft_strdup</a></td>
-            <td>Returns a pointer to a null-terminated byte string, which is a duplicate of the string.</td>
-        </tr>
-        <tr>
-            <td><a href=ft_striteri.c>ft_striteri</a></td>
-            <td>Applies a function to each character of the string.</td>
-        </tr>
-        <tr>
-            <td><a href=ft_strjoin.c>ft_strjoin</a></td>
-            <td>Returns a new string, which is the result of the concatenation of 's1' and 's2'.</td>
-        </tr>
-        <tr>
-            <td><a href=ft_strmapi.c>ft_strmapi</a></td>
-            <td>Applies a function to each character of the string 's' to create a new string.</td>
-        </tr>
-        <tr>
-            <td><a href=ft_strtrim.c>ft_strtrim</a></td>
-            <td>Returns a copy of 's1' with the characters specified in 'set' removed from the beginning and the end of the string.</td>
-        </tr>
-        <tr>
-            <td><a href=ft_substr.c>ft_substr</a></td>
-            <td>Returns a substring from the string 's'. The substring begins at index 'start' and is of maximum size 'len'.</td>
-        </tr>
-    </tbody>
-    <thead>
-        <tr>
-            <th colspan=3><h4>Chained lists manipulation</h4></a></th>
-        </tr>
-        <tr>
-            <th>Libft</th>
-            <th>Description</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td><a href=ft_lstadd_back.c>ft_lstadd_back</a></td>
-            <td>Adds the element at the end of the list.</td>
-        </tr>
-        <tr>
-            <td><a href=ft_lstadd_front.c>ft_lstadd_front</a></td>
-            <td>Adds the element at the beginning of the list.</td>
-        </tr>
-        <tr>
-            <td><a href=ft_lstclear.c>ft_lstclear</a></td>
-            <td>Deletes and frees the given element and every successor of that element, using a given function and free.</td>
-        </tr>
-        <tr>
-            <td><a href=ft_lstdelone.c>ft_lstdelone</a></td>
-            <td>Takes as a parameter an element and frees the memory of the element’s content using a function given as a parameter and free the element.</td>
-        </tr>
-        <tr>
-            <td><a href=ft_lstiter.c>ft_lstiter</a></td>
-            <td>Iterates the list and applies a function to the content of each element.</td>
-        </tr>
-        <tr>
-            <td><a href=ft_lstlast.c>ft_lstlast</a></td>
-            <td>Returns the last element of the list.</td>
-        </tr>
-        <tr>
-            <td><a href=ft_lstmap.c>ft_lstmap</a></td>
-            <td>Iterates the list and applies a function to the content of each element. Creates a new list resulting of the successive applications of the function. A 'del' function is used to delete the content of an element if needed.</td>
-        </tr>
-        <tr>
-            <td><a href=ft_lstnew.c>ft_lstnew</a></td>
-            <td>Returns a new element.</td>
-        </tr>
-        <tr>
-            <td><a href=ft_lstsize.c>ft_lstsize</a></td>
-            <td>Counts the number of elements in a list.</td>
+            <td><a>ft_strlen</a></td>
+            <td>Get the length of the string passed to it.</td>
         </tr>
     </tbody>
 </table>
 
-## Updating
+# Summary of the functions
+## The get next line:
 
-The project might be updated regularly with new functions that could be useful for other projects.
+### The get_next_line function will coordinate and call the other functions:
 
+- declare the static variable,
+- if the file descriptor fd or the BUFFER_SIZE is invalid, return NULL right away,
+- call the reading function,
+- if the static variable is not null or empty:
+assign the result of the function to save the extra characters to the static variable,
+- assign the result of the function to get the line to another variable that we will return shortly,
+- if the variable we want to return, the line, is null or empty, free any allocated memory and return NULL,
+- otherwise, return the line.
 
+---
+## The ft read & save:
+
+### This function will read from the file descriptor in a loop until we detect a \n or the end of the file:
+
+- create a reading loop that stops when the read function returns 0, which means we are at the end of the file and there is nothing left to read,
+- read from the file descriptor,
+- if read returns -1, there was an error, free all allocated memory and stop everything,
+- save the read characters in a static variable (strjoin the buffer to the static),
+- check to see if there is a \n in the static variable using ft_strchr: if yes, stop the loop, if no, continue.
+
+---
+## The ft save line:
+
+### If this function is called, it means we know for a fact that there is a \n in the static variable (or that there is nothing left to read in the file). We will extract the characters up to the \n to get the line we must later return:
+
+- count the number of characters to and including the \n if there is one,
+- malloc a string of the counted size, + 1 for the final \0,
+- copy the characters until the \n or the \0 and add the final \0,
+- return the malloc’d string.
+
+---
+
+## The ft save remaining:
+
+### As with the previous function, by the time we call this function, we know that there is a \n in the static variable. If we have reached the end of the file, there is no need to call this function because we will end up returning the last line with the previous function. We must now “reset” the static variable by taking all the characters after the \n:
+
+- measure the size of the string in the static variable, minus the number of characters until the \n (included!), + 1 for the final \0,
+- malloc a string of that size,
+- copy the characters and add the final \0,
+- return the new malloc’d string.
+
+---
 <h3 align="left">Connect with me:</h3>
 <p align="left">
 <a href="https://twitter.com/_thesalama" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/twitter.svg" alt="_thesalama" height="30" width="40" /></a>
