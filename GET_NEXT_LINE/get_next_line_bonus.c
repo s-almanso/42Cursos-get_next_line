@@ -6,7 +6,7 @@
 /*   By: salmanso <salmanso@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/25 22:53:22 by salmanso          #+#    #+#             */
-/*   Updated: 2022/06/27 22:43:42 by salmanso         ###   ########.fr       */
+/*   Updated: 2022/06/30 00:24:33 by salmanso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,12 @@ char	*ft_read_save(int fd, char *str)
 		}
 		tmp[count] = '\0';
 		str = ft_strjoin(str, tmp);
+		if (str == '\0')
+		{
+			free(str);
+			free(tmp);
+			return (NULL);
+		}
 	}
 	free (tmp);
 	return (str);
